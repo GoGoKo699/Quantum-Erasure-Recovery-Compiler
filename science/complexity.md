@@ -30,7 +30,7 @@ To realize this group as an actual erasure instance, extend $u$ to a basis $u,w_
 ```math
 U=\mathrm{span}\{(u,0),(w_1,e_1),\ldots,(w_h,e_h)\},
 ```
-where $e_i$ is the $i$th coordinate vector on the added locations. The pure CSS state proportional to the uniform superposition of binary strings in $U$ has stabilizers $X(U)$ and $Z(U^\perp)$.
+where $e_i$ is the coordinate vector for added location $i$. The pure CSS state proportional to the uniform superposition of binary strings in $U$ has stabilizers $X(U)$ and $Z(U^\perp)$.
 
 The shortening of $U$ to vectors with zeros on the added coordinates is exactly $\mathrm{span}\{u\}$ on the visible locations. The shortening of $U^\perp$ is $L$, since a visible vector must be orthogonal to $u,w_1,\ldots,w_h$. Tracing out the added locations therefore leaves exactly the proposed reduced group.
 
