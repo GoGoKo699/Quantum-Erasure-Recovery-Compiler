@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      CAPTURE_REVISION: 02896adc87f081b804065e25a7a404574f62b38f
+      CAPTURE_REVISION: b960d290edd538ce18b7b0ecd04efddea4907539
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: 02896adc87f081b804065e25a7a404574f62b38f
+          ref: b960d290edd538ce18b7b0ecd04efddea4907539
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -34,10 +34,12 @@ jobs:
       - name: Check two viewports on the exact merged science tree
         run: |
           export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
+          printf '%s\n' '{"schema_version": 1, "expressions": [{"path": "README.md", "index": 4, "source_sha256": "d56acb28ee9f62594e4dcc19ab63713c2c9753c531c30ca57f1d248cc49a9543", "required_text": ["Opt", "min", "c", "A", "△"]}, {"path": "science/complexity.md", "index": 67, "source_sha256": "d79911baa9f5e6aa477902ccbf6264034cd7b145ce2a25017356c69b5d7eb955", "required_text": ["span(u)"]}, {"path": "science/complexity.md", "index": 73, "source_sha256": "df78128fd59546f4276ae05d117efd3b13f46a649299820bd674c79f1fb7a389", "required_text": ["∈span(u)"]}, {"path": "science/complexity.md", "index": 75, "source_sha256": "476abf46b50668bc710593d9ca00eb7f4a7b50449b5aadf75219bcd1923dbb77", "required_text": ["⋅u=0"]}, {"path": "science/theorem.md", "index": 4, "source_sha256": "963fa8b728a90e69546409b4b42a904db4c0652daf94e0c051a6724315316b62", "required_text": ["C", "min", "τ", "T"]}]}' > "$RUNNER_TEMP/contract.json"
           node "$RUNNER_TEMP/collector/capture_hosted_math.cjs" \
             --root "$GITHUB_WORKSPACE" \
             --repository "$GITHUB_REPOSITORY" \
             --revision "$CAPTURE_REVISION" \
+            --contract "$RUNNER_TEMP/contract.json" \
             --output "$RUNNER_TEMP/hosted-math"
       - name: Save observations
         if: always()
