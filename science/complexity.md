@@ -26,15 +26,15 @@ Any admissible pair has a basis with $X$ on $R$ in the first element and $Z$ on 
 
 ### Realizing the reduced group by erasure
 
-To realize this group as an actual erasure instance, extend $u$ to a basis $u,w_1,\ldots,w_h$ of $L^\perp$. Add $h$ coordinates for qubits to be erased, and define the subspace
+To realize this group as an actual erasure instance, let $L_0$ be the orthogonal complement of $L$ and extend $u$ to a basis $u,w_1,\ldots,w_h$ of $L_0$. Add $h$ coordinates for qubits to be erased, and define the subspace
 ```math
 U=\mathrm{span}\{(u,0),(w_1,e_1),\ldots,(w_h,e_h)\},
 ```
-where $e_i$ is the coordinate vector for added location $i$. The pure CSS state proportional to the uniform superposition of binary strings in $U$ has stabilizers $X(U)$ and $Z(U^\perp)$.
+where $e_i$ is the coordinate vector for added location $i$. The pure CSS state proportional to the uniform superposition of binary strings in $U$ has stabilizers $X(U)$ and $Z(U_0)$, where $U_0$ is the orthogonal complement of $U$.
 
-The shortening of $U$ to vectors with zeros on the added coordinates is exactly $\mathrm{span}(u)$ on the visible locations. The shortening of $U^\perp$ is $L$, since a visible vector must be orthogonal to $u,w_1,\ldots,w_h$. Tracing out the added locations therefore leaves exactly the proposed reduced group.
+The shortening of $U$ to vectors with zeros on the added coordinates is exactly $\mathrm{span}(u)$ on the visible locations. The shortening of $U_0$ is $L$, since a visible vector must be orthogonal to $u,w_1,\ldots,w_h$. Tracing out the added locations therefore leaves exactly the proposed reduced group.
 
-There is no nonidentity stabilizer supported on $R$ alone in the pure state. A reference-only $X$ factor would require $e_R\in\mathrm{span}(u)$, which is impossible. A reference-only $Z$ factor would require $e_R\perp u$, which is also impossible. The reference marginal is maximally mixed, and the pure state is the Choi state of a one-logical-qubit stabilizer isometry. This can be seen by fixing the two Schmidt states at $R$ as the computational basis, using the stabilizers with $X$ and $Z$ on $R$ to obtain the two encoded Pauli operators. The syndrome system has a solution because $H$ has full row rank, so the erased instance is correctable according to the [admissible-pair criterion](model.md).
+There is no nonidentity stabilizer supported on $R$ alone in the pure state. A reference-only $X$ factor would require $e_R\in\mathrm{span}(u)$, which is impossible. A reference-only $Z$ factor would require $e_R\cdot u=0$, which is also impossible. The reference marginal is maximally mixed, and the pure state is the Choi state of a one-logical-qubit stabilizer isometry. This can be seen by fixing the two Schmidt states at $R$ as the computational basis, using the stabilizers with $X$ and $Z$ on $R$ to obtain the two encoded Pauli operators. The syndrome system has a solution because $H$ has full row rank, so the erased instance is correctable according to the [admissible-pair criterion](model.md).
 
 All matrices and the full tableau can be constructed in polynomial time. The reduction applies to the exact physical recovery cost, although the source problem is itself a classical decoding problem. In the quantum instance the erasure pattern is fixed, no syndrome needs to be inferred, and the optimization variable is a pair of surviving logical representatives.
 
