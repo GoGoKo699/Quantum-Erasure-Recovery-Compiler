@@ -1,8 +1,9 @@
-name: Verify pinned GitHub rendering
+name: Verify pinned sister rendering
 on:
   push:
     branches:
       - merlin/verify-erasure-hosted-math-20261123
+      - merlin/verify-erasure-sisters-20261123
     paths:
       - '.github/workflows/verify-erasure-hosted-math.yml'
 permissions:
@@ -10,13 +11,15 @@ permissions:
 jobs:
   capture:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
-      CAPTURE_REVISION: b960d290edd538ce18b7b0ecd04efddea4907539
+      CAPTURE_REVISION: b748fb0674a295518ea0c8a713c8aae1d74a756c
+      PROBE_PAGE: science/benchmarks.md
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Check out the pinned science source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: b960d290edd538ce18b7b0ecd04efddea4907539
+          ref: ${{ env.CAPTURE_REVISION }}
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -27,24 +30,36 @@ jobs:
           source="https://raw.githubusercontent.com/GoGoKo699/Quantum-Memory-Calibration/213dcbf5013bf7ea63f796e6288ef24963281b23/verification/hosted_math"
           curl --fail --silent --show-error "$source/capture_hosted_math.cjs" -o "$RUNNER_TEMP/collector/capture_hosted_math.cjs"
           curl --fail --silent --show-error "$source/check_rendered_math.py" -o "$RUNNER_TEMP/collector/check_rendered_math.py"
+          curl --fail --silent --show-error "$source/probe_hosted_math.cjs" -o "$RUNNER_TEMP/collector/probe_hosted_math.cjs"
           test "$(git hash-object "$RUNNER_TEMP/collector/capture_hosted_math.cjs")" = d650de78b0bce00d1abf99cadfb66af1a2e80358
           test "$(git hash-object "$RUNNER_TEMP/collector/check_rendered_math.py")" = 1d3bf9810d0dfadb844a48b354af80f9b66924bc
+          test "$(git hash-object "$RUNNER_TEMP/collector/probe_hosted_math.cjs")" = f83ea9da799bee0b53bd5c57315ae2b4b2d9de43
           npm install --prefix "$RUNNER_TEMP/math-runtime" playwright@1.56.1 mathjax-full@3.2.1
           node "$RUNNER_TEMP/math-runtime/node_modules/playwright/cli.js" install --with-deps chromium
-      - name: Check two viewports on the exact merged science tree
+      - name: Check representative mathematics on both viewports
         run: |
           export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
-          printf '%s\n' '{"schema_version": 1, "expressions": [{"path": "README.md", "index": 4, "source_sha256": "d56acb28ee9f62594e4dcc19ab63713c2c9753c531c30ca57f1d248cc49a9543", "required_text": ["Opt", "min", "c", "A", "△"]}, {"path": "science/complexity.md", "index": 67, "source_sha256": "d79911baa9f5e6aa477902ccbf6264034cd7b145ce2a25017356c69b5d7eb955", "required_text": ["span(u)"]}, {"path": "science/complexity.md", "index": 73, "source_sha256": "df78128fd59546f4276ae05d117efd3b13f46a649299820bd674c79f1fb7a389", "required_text": ["∈span(u)"]}, {"path": "science/complexity.md", "index": 75, "source_sha256": "476abf46b50668bc710593d9ca00eb7f4a7b50449b5aadf75219bcd1923dbb77", "required_text": ["⋅u=0"]}, {"path": "science/theorem.md", "index": 4, "source_sha256": "963fa8b728a90e69546409b4b42a904db4c0652daf94e0c051a6724315316b62", "required_text": ["C", "min", "τ", "T"]}]}' > "$RUNNER_TEMP/contract.json"
+          node "$RUNNER_TEMP/collector/probe_hosted_math.cjs" \
+            --root "$GITHUB_WORKSPACE" \
+            --repository "$GITHUB_REPOSITORY" \
+            --revision "$CAPTURE_REVISION" \
+            --page "$PROBE_PAGE" \
+            --output "$RUNNER_TEMP/hosted-probe"
+      - name: Check both viewports on every pinned reader page
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/math-runtime/node_modules"
           node "$RUNNER_TEMP/collector/capture_hosted_math.cjs" \
             --root "$GITHUB_WORKSPACE" \
             --repository "$GITHUB_REPOSITORY" \
             --revision "$CAPTURE_REVISION" \
-            --contract "$RUNNER_TEMP/contract.json" \
             --output "$RUNNER_TEMP/hosted-math"
-      - name: Save observations
+      - name: Save actual observations
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: erasure-hosted-math
-          path: ${{ runner.temp }}/hosted-math
+          name: sister-hosted-math-${{ env.CAPTURE_REVISION }}
+          path: |
+            ${{ runner.temp }}/hosted-probe
+            ${{ runner.temp }}/hosted-math
+          if-no-files-found: error
           retention-days: 14
