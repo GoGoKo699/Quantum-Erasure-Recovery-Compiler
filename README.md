@@ -5,8 +5,8 @@
 For each surviving pair of logical Pauli representatives, let $`A`$ be the sites where they anticommute locally. If $`o`$ is the output site, find a cheapest edge set whose odd-degree vertices are $`A\triangle\{o\}`$. Such an edge set is called a *T-join*. Minimizing its cost over the representative pairs gives the exact answer.
 
 ```math
-\operatorname{Opt}(o)
-=\min_{P,Q}\operatorname{cost}_G\bigl(A(P,Q)\triangle\{o\}\bigr).
+\mathrm{Opt}(o)
+=\min_{P,Q} c_G\bigl(A(P,Q)\triangle\{o\}\bigr).
 ```
 
 The compiler applies one CNOT per selected edge, followed by single-qubit measurements and output corrections. The converse tracks the same local anticommutation through every nonzero branch of an adaptive stabilizer decoder. Edge weights are nonnegative. Single-qubit stabilizer operations, resets and classical feedforward are free. The cost counts post-erasure CNOTs, with no preshared ancillary entanglement.
