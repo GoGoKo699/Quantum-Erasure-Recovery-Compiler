@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      CAPTURE_REVISION: b748fb0674a295518ea0c8a713c8aae1d74a756c
+      CAPTURE_REVISION: b659b4a11392a5eb0d2ff700ee802c70ecd4e846
       PROBE_PAGE: science/benchmarks.md
     steps:
       - name: Check out the pinned science source
