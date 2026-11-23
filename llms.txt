@@ -9,11 +9,12 @@
 - [Compiler and converse](science/theorem.md) derive the minimum T-join, one CNOT per selected edge and adaptive branch converse.
 - [Complexity](science/complexity.md) separates polynomial routing per pair from NP-complete representative selection.
 - [Benchmarks](science/benchmarks.md) cover the five-qubit code, Steane code and generalized Smolin witness.
+- [Projective-line recovery](science/benchmarks.md#projective-line-recovery) derives the exact extraction and installed-coupler costs and links to the filtered-channel capacity.
 - [Related work](science/related-work.md) and [bibliography](references/bibliography.bib) record primary comparisons.
 
 ## Study and verify
 
-- [Gottesman bridge](learning/GOTTESMAN_BRIDGE.md) gives source sections and notation transfer.
+- [Nielsen and Chuang source bridge](learning/ANCHOR_AND_BRIDGE.md) gives the educational anchor, source sections and notation transfer.
 - [Milestones](learning/MILESTONES.md) give the common learning route.
 - [Worked example](learning/WORKED_EXAMPLE.md) connects one CNOT, measurement signs and graph cost.
 - [Verification](verification/README.md) gives the reference compiler, input format and reproduction commands.

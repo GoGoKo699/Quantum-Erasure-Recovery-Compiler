@@ -1,14 +1,14 @@
-# From Gottesman’s stabilizers to graph-constrained recovery
+# Gottesman research supplement
 
-The educational anchor is Daniel Gottesman, *Stabilizer Codes and Quantum Error Correction*, Caltech PhD thesis, [arXiv:quant-ph/9705052v1](https://arxiv.org/abs/quant-ph/9705052v1), submitted in 1997. Section numbers refer to that version.
+Daniel Gottesman, *Stabilizer Codes and Quantum Error Correction*, Caltech PhD thesis, [arXiv:quant-ph/9705052v1](https://arxiv.org/abs/quant-ph/9705052v1), submitted in 1997, gives the stabilizer research background for this project. Section numbers refer to that version. Start the learning route with the [Nielsen and Chuang source bridge](ANCHOR_AND_BRIDGE.md).
 
 | Read in Gottesman | Transfer to this project |
 |---|---|
-| ``2.3–2.4, quantum codes and error models | Correctability concerns the correlations retained after the known erased set is discarded. |
-| ``3.2 and 3.4, stabilizer codes and alternate languages | Keep binary commutation contributions separately at each site. |
-| ``4.1–4.3, encoding and decoding | Compare standard-form decoding with a post-loss optimization on a separate hardware graph. |
-| `5.2 and Appendix A, measurement and gates | Track the generator added by a Pauli measurement and the conjugation of local Paulis by CNOT. |
-| ``8.2 and 8.6, five-qubit and CSS codes | Use the five-qubit code for the hardware comparison and CSS states for the complexity construction. |
+| Sections 2.3–2.4, quantum codes and error models | Correctability concerns the correlations retained after the known erased set is discarded. |
+| Sections 3.2 and 3.4, stabilizer codes and alternate languages | Keep binary commutation contributions separately at each site. |
+| Sections 4.1–4.3, encoding and decoding | Compare standard-form decoding with a post-loss optimization on a separate hardware graph. |
+| Section 5.2 and Appendix A, measurement and gates | Track the generator added by a Pauli measurement and the conjugation of local Paulis by CNOT. |
+| Sections 8.2 and 8.6, five-qubit and CSS codes | Use the five-qubit code for the hardware comparison and CSS states for the complexity construction. |
 
 ## Translate the notation
 

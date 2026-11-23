@@ -16,8 +16,11 @@ The compiler applies one CNOT per selected edge, followed by single-qubit measur
 | A representative pair anticommutes just at the output | 0 |
 | Five-qubit code after two flagged losses, all-to-all graph, output at a survivor | 1 |
 | Same code, three survivors at $`0,L,2L`$ on a line and output at $`0`$ | $`L`$ |
+| Projective-plane CSS code after a full line of $`q+1`$ sites survives, all-to-all survivor graph | $`q/2`$ |
 
 Finding a cheapest T-join for a fixed pair is a polynomial-time matching problem. Choosing the best pair is NP-complete in its decision form, even on an all-to-all graph. The [reference compiler](verification/README.md) is intended for exact small-instance studies.
+
+For projective-line erasures, the same cost rule gives an optimal static hardware design. When erased sites are unavailable, exactly $`(q^2+q+1)q/2`$ installed couplers suffice to recover on every full line with $`q/2`$ active CNOTs and a survivor output chosen from the flag. See [projective-line recovery](science/benchmarks.md#projective-line-recovery) for the hardware result and [Correlated Erasure Capacity](https://github.com/GoGoKo699/Correlated-Erasure-Capacity) for the channel.
 
 ## Read the science
 
@@ -31,7 +34,7 @@ Finding a cheapest T-join for a fixed pair is a polynomial-time matching problem
 
 ## Learn and reproduce
 
-Start with the [Gottesman bridge](learning/GOTTESMAN_BRIDGE.md), then follow the [30-milestone map](learning/MILESTONES.md) or the [worked recovery](learning/WORKED_EXAMPLE.md). Run the [compiler and verification suite](verification/README.md) for finite checks of the proofs and examples.
+The educational anchor is Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition. Start with the [source bridge](learning/ANCHOR_AND_BRIDGE.md), then follow the [30-milestone map](learning/MILESTONES.md) or the [worked recovery](learning/WORKED_EXAMPLE.md). Run the [compiler and verification suite](verification/README.md) for finite checks of the proofs and examples.
 
 ## Purpose and contact
 

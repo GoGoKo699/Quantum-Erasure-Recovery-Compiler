@@ -1,6 +1,6 @@
 # Learning milestones
 
-The first 12 milestones establish the stabilizer, erasure and hardware model. The next 18 connect local commutation to the graph compiler, its converse and its limits. Use the [Gottesman bridge](GOTTESMAN_BRIDGE.md) for the selected reading sections.
+The first 12 milestones establish the stabilizer, erasure and hardware model. The next 18 connect local commutation to the graph compiler, its converse and its limits. Use the [Nielsen and Chuang source bridge](ANCHOR_AND_BRIDGE.md) for the selected reading sections.
 
 ## Background and preliminaries
 
@@ -10,7 +10,7 @@ The first 12 milestones establish the stabilizer, erasure and hardware model. Th
 
 **Understanding target.** Read the phase-free label and keep the sign as separate data.
 
-**Builds on.** [Bridge](GOTTESMAN_BRIDGE.md)
+**Builds on.** [Bridge](ANCHOR_AND_BRIDGE.md)
 
 ### M02 Local commutation
 
@@ -18,7 +18,7 @@ The first 12 milestones establish the stabilizer, erasure and hardware model. Th
 
 **Understanding target.** Calculate the binary symplectic product of a local pair.
 
-**Builds on.** [Bridge](GOTTESMAN_BRIDGE.md)
+**Builds on.** [Bridge](ANCHOR_AND_BRIDGE.md)
 
 ### M03 Global commutation
 
@@ -240,8 +240,8 @@ The first 12 milestones establish the stabilizer, erasure and hardware model. Th
 
 ### M30 Physical conclusion
 
-**Question.** What determines the cost of restoring the encoded qubit?
+**Question.** How do the surviving correlations determine the cost of restoring one encoded qubit?
 
-**Understanding target.** Connect information surviving loss, choice of representative and geometry. State the one-logical-qubit and ideal-control scope.
+**Understanding target.** Connect correctability, the choice of representative and the hardware graph. Use projective lines to distinguish the CNOTs executed per mask from the couplers installed to serve the whole mask law.
 
-**Builds on.** M25–29, [Model](../science/model.md), [Benchmarks](../science/benchmarks.md), [Complexity](../science/complexity.md)
+**Builds on.** M25–29, [Model](../science/model.md), [Projective-line recovery](../science/benchmarks.md#projective-line-recovery), [Complexity](../science/complexity.md)
