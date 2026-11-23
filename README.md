@@ -14,7 +14,7 @@ The compiler applies one CNOT per selected edge, followed by single-qubit measur
 | Recovery instance | Minimum CNOT count at unit edge cost |
 |---|---:|
 | A representative pair anticommutes just at the output | 0 |
-| Five-qubit code after two flagged losses, all-to-all graph | 1 |
+| Five-qubit code after two flagged losses, all-to-all graph, output at a survivor | 1 |
 | Same code, three survivors at $`0,L,2L`$ on a line and output at $`0`$ | $`L`$ |
 
 Finding a cheapest T-join for a fixed pair is a polynomial-time matching problem. Choosing the best pair is NP-complete in its decision form, even on an all-to-all graph. The [reference compiler](verification/README.md) is intended for exact small-instance studies.
