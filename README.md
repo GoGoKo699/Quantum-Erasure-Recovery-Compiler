@@ -22,6 +22,14 @@ Finding a cheapest T-join for a fixed pair is a polynomial-time matching problem
 
 For projective-line erasures, the same cost rule gives an optimal static hardware design. When erased sites are unavailable, exactly $`(q^2+q+1)q/2`$ installed couplers suffice to recover on every full line with $`q/2`$ active CNOTs and a survivor output chosen from the flag. See [projective-line recovery](science/benchmarks.md#projective-line-recovery) for the hardware result and [Correlated Erasure Capacity](https://github.com/GoGoKo699/Correlated-Erasure-Capacity) for the channel.
 
+## Run the recovery
+
+1. **Compile from the flag.** Supply the [signed stabilizer tableau](verification/README.md#inputs) of the one-qubit encoding, the erased sites, the available weighted couplers and the output site. The compiler finds the surviving logical Pauli pairs, computes the cheapest parity join for each, and selects a pair and join before any quantum measurement. If no feasible pair and join exist, it reports `NoRecovery`.
+2. **Run the selected gates.** Apply local Cliffords and one CNOT per selected edge, following the [forest from leaves to roots](science/theorem.md#from-an-edge-set-to-a-circuit). Prepare or reset relay qubits only where the hardware input and tracked operators permit it. Erased sites require explicitly available replacement qubits and couplers.
+3. **Read and correct.** Measure the specified Pauli on each needed non-output site, XOR the prescribed signed outcomes, and apply the conditional single-qubit corrections on the output. Every measurement record of nonzero probability returns the unknown qubit with its reference correlations.
+
+The [worked recovery](learning/WORKED_EXAMPLE.md) follows the gates, measurements and output correction. The weighted objective counts CNOTs after the erasure. Classical compilation and local operations have separate implementation costs. The [reference solver](verification/README.md) is for exact small instances.
+
 ## Read the science
 
 | Question | Where to start |
